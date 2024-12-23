@@ -1,0 +1,147 @@
+---
+import Header from '../components/Header.astro'
+import SubHeader from '../components/SubHeader.astro'
+import AsideLeft from '../components/AsideLeft.astro'
+import AsideRight from '../components/AsideRight.astro'
+import Footer from '../components/Footer.astro'
+import Home from '../components/Home.astro'
+import Projects from '../components/Projects.astro'
+import History from '../components/History.astro'
+import ContactMe from '../components/ContactMe.astro'
+
+const THEME = {
+    theme: 'theme',
+    light: 'light',
+    dark: 'dark',
+}
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Camidev</title>
+    </head>
+    <body class="hidden" data-theme="dark">
+        <div class="section-main">
+            <Header />
+            <SubHeader />
+            <AsideLeft />
+            <main class="main-content">
+                <Home />
+                <Projects />
+                <History />
+                <ContactMe />
+            </main>
+            <AsideRight />
+            <Footer />
+        </div>
+    </body>
+</html>
+
+<script src="../scripts/theme.js"></script>
+
+<script is:inline define:vars={{ THEME }}>
+    const savedTheme = localStorage.getItem(THEME.theme) || THEME.light
+
+    document.body?.setAttribute('data-theme', savedTheme)
+
+    document.body.style.transition = 'none'
+
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.remove('hidden')
+        document.body.style.transition = ''
+    })
+</script>
+
+<style is:global>
+    :root {
+        --reddish-orange: #ff3f1a;
+        --mirage: #1b1d1a;
+        --faded-jade: #44797f;
+        --aqua-island: #97d6df;
+        --chalk-color: #e8ebf3;
+        --dark: #111111;
+        --yellow: #facc15;
+        --line: #585859;
+        --text-dark: #9095a1;
+    }
+
+    body.hidden {
+        visibility: hidden;
+    }
+    .menu {
+        display: none;
+    }
+
+    /*Container*/
+    .section-main {
+        display: grid;
+        grid-template-areas:
+            'head head head'
+            'subhead subhead subhead'
+            'menu main aside'
+            'foot foot foot';
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-columns: minmax(4rem, auto) 1fr minmax(2rem, auto);
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .main-content {
+        grid-area: main;
+        flex-direction: row;
+        background-color: #f1f1f1;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        transition: background 0.5s ease-in-out;
+
+        &::-webkit-scrollbar {
+            height: 0px;
+        }
+        .section-home::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .section-home::-webkit-scrollbar-thumb {
+            background-color: var(--mirage);
+            border-radius: 4px;
+        }
+
+        & section {
+            scroll-snap-align: start;
+            min-width: 100vw;
+        }
+    }
+
+    @media (max-width: 926px) {
+        .section-main {
+            display: grid;
+            grid-template-areas:
+                'head'
+                'subhead'
+                'main'
+                'foot';
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+        }
+        .aside-right,
+        .aside-left,
+        .sub-header,
+        .footer-second-part {
+            display: none;
+        }
+        .menu {
+            display: block;
+        }
+    }
+
+    /**Theme */
+</style>

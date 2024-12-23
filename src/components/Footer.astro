@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets'
+---
+
+<footer class="footer">
+    <div class="footer-first-part">
+        <span>
+            <Image
+                src="/assets/tabs.svg"
+                alt={'Logo tabs'}
+                width={20}
+                height={20}
+            />
+        </span>
+        <span>
+            <Image
+                width={54}
+                height={20}
+                src="/assets/isOnline.svg"
+                alt={'Logo online'}
+            />
+        </span>
+        <span>
+            <Image
+                width={64}
+                height={20}
+                src="/assets/console.svg"
+                alt={'Logo console'}
+            />
+        </span>
+    </div>
+</footer>
+
+<style is:global>
+    .footer {
+        display: flex;
+        grid-area: foot;
+        border: 1px solid var(--chalk-color);
+    }
+
+    .footer-first-part {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        gap: 5px;
+
+        & span {
+            display: flex;
+        }
+    }
+</style>

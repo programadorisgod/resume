@@ -1,0 +1,193 @@
+---
+
+const { key, filter, title, url, method = 'GET', description='Description' } = Astro.props
+
+---
+ <header>
+    <div>
+        <h2>{title}</h2>
+    </div>
+    <div class="request_projects">
+        <div class="request_projects_search">
+            <div>
+                <span>{method}</span>
+                <input class="search" type="text" disabled value={url} />
+            </div>
+
+            <button class="send"> Send </button>
+        </div>
+    </div>
+    <div class="table-container">
+        <span>Params</span>
+        <table id="editableTable">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{key}</td>
+                    <td>{filter}</td>
+                    <td>{description}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</header>
+
+
+
+
+<style>
+    header {
+        padding:0 20px;
+    }
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+       
+        table-layout: fixed; /* Evitamos que el tamaño de la tabla cambie */
+
+        & th,
+        td {
+            padding: 12px;
+          
+            border: 1px solid var(--line);
+            text-align: left;
+            overflow: hidden
+            white-space: nowrap;
+            text-overflow: ellipsis; /* Texto con puntos suspensivos si es muy largo */
+        }
+
+        & td {
+            color: #959ea6;
+            cursor: pointer;
+        }
+
+        /* Input editable de la tabla */
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: transparent;
+            border: 1px solid #444;
+            padding: 8px;
+            outline: none;
+            font-size: inherit;
+            height: 22px;
+        }
+    }
+
+    & main {
+        overflow-y: scroll;
+        height: 600px;
+        margin-top: 10px;
+
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        & h2 {
+            text-align: center;
+        }
+
+        .request_projects {
+            & .request_projects_search {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                width: 100%;
+
+                & div {
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid var(--line);
+                    padding: 1px 0px 1px 5px;
+                    border-radius: 5px;
+                    flex-grow: 1;
+
+                    & span {
+                        color: green;
+                        font-weight: bold;
+                        border-right: 1px solid var(--line);
+                        padding-right: 10px;
+                        white-space: nowrap;
+                    }
+
+                    & input {
+                        flex-grow: 1;
+                        height: 40px;
+                        border-radius: 0 5px 0 0;
+                        border: none;
+                        padding-left: 8px;
+                        background: #f1f1f1;
+                        outline: none;
+                        transition:  background 0.5s ease-in-out;
+                    }
+                }
+
+                & button {
+                    height: 40px;
+                    width: 10%;
+                    border-radius: 5px;
+                    background-color: var(--aqua-island);
+                    border: none;
+                    transition: transform 0.2s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+
+    @media (width <= 900px) {
+        & button {
+            width: auto !important;
+            padding: 0 30px;
+        }
+    }
+
+    @media (width <= 350px) {
+        & button {
+            width: auto !important;
+            padding: 0px 30px;
+        }
+    }
+
+    @media (width: 912px) {
+        & button {
+            width: auto !important;
+            padding: 0px 30px;
+        }
+    }
+
+    @media (width: 102px) {
+        & button {
+            width: auto !important;
+            padding: 0px 30px;
+        }
+    }
+
+
+    /**Loader */
+</style>
+
+
+
+
+<script src="../scripts/searchProject.js"></script>
+
+<script src="../scripts/createInputTable.js">
+
+</script>

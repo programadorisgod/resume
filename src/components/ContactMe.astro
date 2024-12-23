@@ -1,0 +1,211 @@
+---
+import HeaderSection from './HeaderSection.astro'
+const props = {
+    title: 'Contact Me',
+    url: 'https://jerson-tapias/contact/me',
+    key: 'contact',
+    filter: 'me',
+    method: 'POST',
+    description: `Let's start working together`,
+}
+---
+
+<section id="contact-me" class="contact-section">
+    <HeaderSection {...props} />
+    <form action="#" method="POST" class="contact-form">
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Your name"
+            />
+        </div>
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="example@exmaple.com"
+            />
+        </div>
+        <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Your message"></textarea>
+        </div>
+        <button type="submit" class="sendEmail">Enviar</button>
+    </form>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <style>
+        .contact-section {
+            scroll-snap-align: start;
+            min-width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 2em;
+            overflow: auto;
+            padding-right: 10%;
+            padding-bottom: 20px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            color: var(--mirage);
+        }
+        label {
+            margin-bottom: 0.5rem;
+            display: block;
+            font-weight: bold;
+        }
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+
+            &:focus {
+                border-color: var(--mirage);
+                outline: none;
+            }
+        }
+
+        button {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--faded-jade);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            &:hover {
+                background-color: var(--aqua-island);
+                color: var(--mirage);
+            }
+        }
+        @media (max-width: 900px) {
+            .contact-section {
+                padding: 15%;
+
+                & .contact-form {
+                    width: 100%;
+                }
+            }
+        }
+
+        @media (width > 1280px) {
+            .contact-section {
+                /*       padding-right: 8% !important; */
+                padding-left: 25px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .contact-section {
+                padding-right: 15%;
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--faded-jade);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</section>
+
+<script>
+    const form = document.querySelector('.contact-form')
+
+    function showToast(message: string, duration = 3000) {
+        const toast = document.getElementById('toast')
+        if (toast) {
+            toast.textContent = message
+            toast.classList.remove('hidden')
+            toast.classList.add('visible')
+
+            // Ocultar el toast después de `duration` ms
+            setTimeout(() => {
+                toast.classList.remove('visible')
+                toast.classList.add('hidden')
+            }, duration)
+        }
+    }
+
+    if (form) {
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault()
+
+            const formData = new FormData(event.target as HTMLFormElement)
+
+            const data = Object.fromEntries(formData.entries())
+
+            try {
+                const response = await fetch(
+                    'http://localhost:4321/api/send-email.json',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    }
+                )
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Error: ${response.status} ${response.statusText}`
+                    )
+                }
+
+                await response.json()
+                form.reset()
+                showToast('¡Correo enviado con éxito!', 5000)
+            } catch (error) {
+                showToast('Error al enviar el correo. Intenta de nuevo.', 5000)
+            }
+        })
+    }
+</script>

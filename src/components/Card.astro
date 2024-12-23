@@ -1,0 +1,163 @@
+---
+import { Image } from 'astro:assets'
+
+export interface Items {
+    title: string
+    description: string
+    tecnologies: Array<string>
+    img: string
+    year?: string
+    position?: string
+    company?: string
+    duration?: string
+    descripcion?: string
+}
+
+const { items } = Astro.props as {
+    items: Items[]
+}
+---
+
+<main class="container">
+    <div class="project-list">
+        {
+            items.map((item) => (
+                <article class="card-item">
+                    <header>
+                        {item?.duration ? (
+                            <span>{item?.duration}</span>
+                        ) : (
+                            <Image
+                                src={`/assets/${item.img}`}
+                                alt={`Image project:${item.title}`}
+                                width={130}
+                                height={110}
+                                class="project-image"
+                                loading="lazy"
+                            />
+                        )}
+                    </header>
+
+                    <div class="project-content">
+                        <h4 class="project-title">
+                            {item.title
+                                ? item.title
+                                : `${item.position} · ${item.company}`}
+                            <span>
+                                <Image
+                                    src={`/assets/arrow-up-right.svg`}
+                                    alt={`Image arrow`}
+                                    width={20}
+                                    height={20}
+                                    class="arrow-image"
+                                />
+                            </span>
+                        </h4>
+
+                        <p class="project-description">{item.description}</p>
+                        <footer class="project-tags">
+                            {item.tecnologies.map((t) => (
+                                <span>{t}</span>
+                            ))}
+                        </footer>
+                    </div>
+                </article>
+            ))
+        }
+    </div>
+</main>
+
+<style is:global>
+    .container {
+        width: 100%;
+        margin-top: 10px;
+        padding-top: 20px;
+
+        & .project-list {
+            display: grid;
+            place-content: center;
+            grid-template-columns: minmax(300px, 600px);
+            gap: 2.5rem;
+            padding-bottom: 20px;
+        }
+    }
+
+    .card-item {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        gap: 1.5rem;
+        border-radius: 5px;
+        padding: 20px;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+            background 0.5s ease-in-out;
+            
+        background: var(--chalk-color);
+
+        
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        &:hover .arrow-image {
+            translate: 10px -4px;
+        }
+        .project-image {
+            object-fit: cover;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            width: 130px;
+            aspect-ratio: auto 130 / 110;
+            height: 110px;
+        }
+        .project-content {
+            flex: 1;
+            p {
+                text-wrap: pretty;
+            }
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+
+            color: var(--faded-jade);
+            position: relative;
+            margin-top: 0px;
+
+            & .arrow-image {
+                position: absolute;
+                top: 6px;
+                margin-left: 5px;
+                transition: translate 0.5s ease;
+                width: 20px;
+                aspect-ratio: auto 20 / 20;
+                height: 20px;
+            }
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+
+            span {
+                background: var(--faded-jade);
+                color: var(--aqua-island);
+                padding: 0.25rem 0.75rem;
+                font-size: 0.75rem;
+                border-radius: 9999px;
+                white-space: nowrap;
+            }
+        }
+    }
+</style>

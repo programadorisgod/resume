@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets'
+---
+
+<aside class="aside-right">
+    <div class="aside-right-options">
+        <div>
+            <Image
+                src="/assets/textSvg.svg"
+                width={20}
+                height={20}
+                alt={'Logo text'}
+            />
+        </div>
+        <div>
+            <Image
+                width={20}
+                height={20}
+                src="/assets/comments.svg"
+                alt={'Logo comments'}
+            />
+        </div>
+        <div>
+            <Image
+                width={20}
+                height={20}
+                src="/assets/code.svg"
+                alt={'Logo code'}
+            />
+        </div>
+        <div>
+            <Image
+                width={20}
+                height={20}
+                src="/assets/arrows.svg"
+                alt={'Logo arrows'}
+            />
+        </div>
+        <div>
+            <Image
+                width={20}
+                height={20}
+                src="/assets/info.svg"
+                alt={'Logo info'}
+            />
+        </div>
+    </div>
+</aside>
+
+<style is:global>
+    .aside-right {
+        text-align: center;
+        border: 1px solid var(--chalk-color);
+        padding: 10px;
+        grid-area: aside;
+    }
+    .aside-right-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+</style>

@@ -1,0 +1,366 @@
+---
+import { Image } from 'astro:assets'
+---
+
+<section class="section-home">
+    <div class="section-home-first-section">
+        <header class="section-home-first-section-header">
+            <Image
+                src="/assets/home-header.svg"
+                height={25}
+                width={289}
+                alt={'header home'}
+            />
+        </header>
+        <article class="section-home-first-section-article">
+            <header class="section-home-first-section-article-header">
+                <Image
+                    src="/assets/bro-yellow.svg"
+                    width={245}
+                    height={222}
+                    alt={'Image create what you have in mind'}
+                />
+            </header>
+            <main>
+                <div class="container-info-article">
+                    <h4 class="section-home-first-section-article-title">
+                        Create what you have in mind
+                    </h4>
+                    <p class="section-home-first-section-article-paragraph">
+                        Your ideas can come to life, don't look for how I do it
+                        but who can do it. You will save time and money.
+                    </p>
+                    <button class="start-project">Let's start a project</button>
+                </div>
+            </main>
+        </article>
+    </div>
+
+    <div class="section-home-second-section">
+        <article>
+            <header>
+                <h1>Jerson Tapias</h1>
+                <h4>
+                    I’m a <span class="profession">software</span> developer
+                </h4>
+            </header>
+            <main>
+                <p>
+                    I make your ideas come true. Regardless of the technology,
+                    my approach focuses on <span
+                        >adding value to the product.</span
+                    > During my free time I like to share knowledge through my social
+                    networks, as I think this is for everyone.
+                </p>
+
+                <div class="socials">
+                    <a
+                        class="tooltip-container"
+                        target="_blank"
+                        href="https://www.linkedin.com/in/jerson-tapias/"
+                    >
+                        <Image
+                            src="/assets/linkedin.svg"
+                            width={47}
+                            height={47}
+                            alt="icon linkedin"
+                        />
+                        <span class="tooltip-text">LinkedIn</span>
+                    </a>
+                    <a
+                        class="tooltip-container"
+                        href="https://github.com/programadorisgod"
+                        target="_blank"
+                    >
+                        <Image
+                            src="/assets/github.svg"
+                            width={47}
+                            height={47}
+                            alt="icon github"
+                        />
+                        <span class="tooltip-text">GitHub</span>
+                    </a>
+                    <a class="tooltip-container">
+                        <Image
+                            src="/assets/cv.svg"
+                            width={47}
+                            height={47}
+                            alt="icon cv"
+                        />
+                        <span class="tooltip-text">Currículum</span>
+                    </a>
+                </div>
+            </main>
+        </article>
+        <div class="avatar">
+            <Image
+                src="/assets/iam.svg"
+                alt="avatar"
+                width={275}
+                height={500}
+            />
+        </div>
+    </div>
+</section>
+
+<style>
+    .tooltip-container {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 5px;
+        background: var(--mirage);
+    }
+
+    .tooltip-text {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 12px;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .tooltip-container:hover {
+        background: var(--mirage);
+    }
+    .tooltip-container:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        background: var(--mirage);
+    }
+
+    .section-home {
+        display: flex;
+        overflow-x: scroll;
+        overflow: hidden;
+    }
+    .section-home-first-section {
+        width: 20%;
+        padding: 5px;
+        display: flex;
+        flex-flow: column nowrap;
+
+        border: 1px solid var(--chalk-color);
+        background: #f9f9f9;
+        text-wrap: balance;
+
+        transition: background 0.5s ease-in-out;
+
+        & .section-home-first-section-header {
+            border-bottom: 1px solid var(--chalk-color);
+            & img {
+                width: 100%;
+                user-select: none;
+            }
+        }
+
+        & .container-info-article {
+            width: 80%;
+        }
+        & .section-home-first-section-article {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+
+            & h4 {
+                height: auto;
+                margin: 0;
+                text-wrap: balance;
+            }
+
+            & main {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                & p {
+                    text-wrap: pretty;
+
+                    font-weight: 200;
+                }
+
+                & button {
+                    width: 100%;
+                    height: 40px;
+                    background: var(--aqua-island);
+
+                    border-radius: 5px;
+                    border: none;
+                    transition: transform 0.5s ease-in-out;
+                    position: relative;
+                    cursor: pointer;
+                    outline: none;
+                    user-select: none;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+        }
+    }
+
+    .section-home-second-section {
+        display: flex;
+        justify-content: center;
+        padding-left: 4%;
+        padding-right: 3%;
+
+        width: 75%;
+
+        & article {
+            padding: 150px 0 0 0;
+
+            & header {
+                & h1 {
+                    font-size: clamp(
+                        1.802032470703125rem,
+                        calc(1.49047rem + 1.55783vw),
+                        2.9859839999999993rem
+                    );
+                    line-height: 1.1;
+                    margin: 0;
+                }
+
+                & h4 {
+                    margin: 0;
+
+                    & span {
+                        color: var(--reddish-orange);
+                    }
+                }
+            }
+
+            & main {
+                & p {
+                    text-wrap: pretty;
+
+                    & span {
+                        color: var(--reddish-orange);
+                    }
+                }
+
+                & .socials {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    gap: 15px;
+                    user-select: none;
+                }
+            }
+        }
+
+        & .avatar {
+            padding: 150px 0 0 0;
+            animation: move 1s alternate infinite;
+            user-select: none;
+        }
+    }
+
+    @media (max-width: 926px) {
+        :is(.section-home-first-section) {
+            display: none;
+        }
+        .section-home {
+            padding: 20px;
+        }
+        .section-home-second-section {
+            width: 100%;
+            & article {
+                padding: 100px 0 0 0;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    @media (width <= 900px) {
+        .avatar {
+            display: none;
+        }
+    }
+
+    @media (width <= 1270px) {
+        .section-home-first-section {
+            padding-right: 10px;
+            & .section-home-first-section-article {
+                & img {
+                    width: 200px !important;
+                }
+            }
+        }
+    }
+
+    @media (width <= 912px) {
+        .avatar {
+            padding: 150px 0 0 0 !important;
+        }
+    }
+
+    @keyframes move {
+        to {
+            transform: translate(0, 10px);
+        }
+        from {
+            transform: translate(0, 0px);
+        }
+    }
+</style>
+
+<script>
+    const button = document.querySelector('.start-project')
+    const links = document.querySelectorAll('.aside-left-options div')
+    const tabs = document.querySelectorAll('.sub-header-section-2 div')
+    const sections = document.querySelectorAll('.main-content section')
+
+    links[0].classList.add('active')
+    tabs[0].classList.add('tab_focus')
+    tabs[0].querySelector('.point')?.classList.add('visible')
+
+    links.forEach((link, index) => {
+        button?.addEventListener('click', () => {
+            links.forEach((l) => l.classList.remove('active'))
+
+            link.classList.add('active')
+
+            tabs[index].classList.add('visible')
+
+            focusTab(tabs, index)
+
+            if (sections.length > 0) {
+                sections[sections.length - 1].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'start',
+                })
+            }
+        })
+    })
+
+    function focusTab(tabs: NodeListOf<Element>, index: number) {
+        const point = tabs[index].querySelector('.point')
+        tabs.forEach((t) => {
+            t.classList.remove('tab_focus')
+            const point = t.querySelector('.point')
+            point?.classList.remove('visible')
+        })
+        tabs[index].classList.add('tab_focus')
+        point?.classList.add('visible')
+    }
+</script>

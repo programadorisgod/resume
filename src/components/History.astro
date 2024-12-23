@@ -1,0 +1,83 @@
+---
+import type { Items } from './Card.astro'
+import Card from './Card.astro'
+import HeaderSection from './HeaderSection.astro'
+
+const experiences: Items[] = [
+    {
+        position: 'Frontend Developer',
+        company: 'Tech Solutions',
+        duration: 'Jan 2020 - Present',
+        description:
+            'Development and maintenance of web applications using React and Astro.',
+        title: '',
+        tecnologies: ['Svelte', 'React', 'Firebase', 'TypeScript', 'Nodejs'],
+        img: '',
+    },
+    {
+        position: 'Software Engineer',
+        company: 'Innovatech',
+        duration: 'Jun 2017 - Dec 2019',
+        description:
+            'Implementation of backend solutions with Node.js and database management.',
+        title: '',
+        tecnologies: [],
+        img: '',
+    },
+    {
+        position: 'Development Intern',
+        company: 'StartUp XYZ',
+        duration: 'Jan 2016 - May 2017',
+        description:
+            'Assistance in mobile application development and software testing.',
+        title: '',
+        tecnologies: [],
+        img: '',
+    },
+]
+
+const props = {
+    title: 'Experience',
+    url: 'https://jerson-tapias/experience',
+    key: 'experience',
+    filter: 'all',
+}
+---
+
+<section class="history" id="History">
+    <HeaderSection {...props} />
+    <Card items={experiences} />
+</section>
+
+<style is:global>
+    .history {
+        margin: 0;
+        scroll-snap-align: start;
+        padding-right: 12%;
+        min-width: 100vw;
+        overflow-y: hidden;
+
+        & main {
+            max-height: calc(100dvh - 400px);
+            overflow-y: auto;
+            margin-top: 10px;
+            scrollbar-color: #888 #f1f1f1;
+            scrollbar-width: thin;
+            padding-bottom: 20px;
+        }
+    }
+
+    @media (width > 1280px) {
+        .history {
+            padding-right: 10% !important;
+            padding-left: 5px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .history {
+            padding-left: 15px;
+            padding-right: 5%;
+        }
+    }
+</style>

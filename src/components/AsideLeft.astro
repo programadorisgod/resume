@@ -1,0 +1,126 @@
+---
+import { Image } from 'astro:assets'
+---
+
+<nav class="aside-left">
+    <div class="aside-left-options">
+        <div>
+            <Image
+                width={20}
+                height={20}
+                src="/assets/home.svg"
+                alt={'Logo home'}
+            />
+            Home
+        </div>
+        <div>
+            <Image
+                width={20}
+                height={20}
+                src="/assets/projects.svg"
+                alt={'Logo projects'}
+            />
+
+            Projects
+        </div>
+        <div>
+            <Image
+                src="/assets/history.svg"
+                width={20}
+                height={20}
+                alt={'Logo History'}
+            />
+            Experience
+        </div>
+        <div>
+            <Image
+                width={20}
+                height={20}
+                src="/assets/api.svg"
+                alt={'Logo apiSvg'}
+            />
+            Contact me
+        </div>
+    </div>
+</nav>
+
+<script>
+    const links = document.querySelectorAll('.aside-left-options div')
+    const sections = document.querySelectorAll('.main-content section')
+    const tabs = document.querySelectorAll('.sub-header-section-2 div')
+
+    links[0].classList.add('active')
+    tabs[0].classList.add('tab_focus')
+    tabs[0].querySelector('.point')?.classList.add('visible')
+
+    links.forEach((link, index) => {
+        link.addEventListener('click', () => {
+            links.forEach((l) => l.classList.remove('active'))
+
+            link.classList.add('active')
+
+            tabs[index].classList.add('visible')
+
+            focusTab(tabs, index)
+
+            if (sections.length > 0) {
+                sections[index].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'start',
+                })
+            }
+        })
+    })
+
+    function focusTab(tabs: NodeListOf<Element>, index: number) {
+        const point = tabs[index].querySelector('.point')
+        tabs.forEach((t) => {
+            t.classList.remove('tab_focus')
+            const point = t.querySelector('.point')
+            point?.classList.remove('visible')
+        })
+        tabs[index].classList.add('tab_focus')
+        point?.classList.add('visible')
+    }
+</script>
+
+<style is:global>
+    .aside-left {
+        grid-area: menu;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid var(--chalk-color);
+        padding: 5px;
+        user-select: none;
+
+        & .aside-left-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+
+            & div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                width: 100%;
+
+                cursor: pointer;
+                transition: background 0.5s ease-in-out;
+            }
+
+            & :nth-child(3) {
+                border-bottom: 1px solid var(--chalk-color);
+            }
+        }
+    }
+
+    .active {
+        background: rgba(255, 255, 255, 0.2);
+    }
+</style>

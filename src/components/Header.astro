@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets'
+
+const date = new Date()
+const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+]
+const day = days[date.getDay()]
+---
+
+<header class="layout-header">
+    <div>
+        <p>Camidev</p>
+    </div>
+    <div class="header-center">{day}</div>
+    <div class="header-options">
+        <button class="header-options-button-theme">
+            <Image
+                src="/assets/theme.svg"
+                width={20}
+                height={20}
+                alt={'button theme'}
+            />
+        </button>
+    </div>
+</header>
+
+<style is:global>
+    /*Header */
+    .layout-header {
+        grid-area: head;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 25px 0px 25px;
+        border-bottom: 1px solid var(--chalk-color);
+        transition: 0.4s;
+    }
+    .layout-header div:nth-child(2) {
+        background-color: var(--chalk-color);
+        width: 15%;
+        height: 2em;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .header-options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+    .header-center {
+        transition: 0.4s;
+        padding: 5px;
+    }
+    .header-options-button-theme {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    /*     .header-options-select-languaje {
+        width: 6em;
+        height: 2.5em;
+        border-radius: 5px;
+        border-color: var(--chalk-color);
+        outline: none;
+    }
+
+    .header-options-select-languaje:focus {
+        border-color: var(--aqua-island);
+        box-shadow: 0 0 1px 2px rgb(151, 214, 223, 0.5);
+    } */
+</style>
