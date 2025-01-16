@@ -137,7 +137,7 @@ import { Image } from 'astro:assets'
                         inline: 'start',
                     })
                 }
-                tabs.forEach((tab, index) => {
+                tabs.forEach((_tab, index) => {
                     const prevPoint = tabs[newIndex].querySelector('.point')
                     const point = tabs[index].querySelector('.point')
 

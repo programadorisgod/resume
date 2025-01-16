@@ -157,7 +157,7 @@ const props = {
 </section>
 
 <script>
-    const form = document.querySelector('.contact-form')
+    const form:HTMLFormElement = document.querySelector('.contact-form') as HTMLFormElement
 
     function showToast(message: string, duration = 3000) {
         const toast = document.getElementById('toast')

@@ -10,17 +10,18 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@fontsource/archivo-black": "^5.1.0",
-    "@fontsource/poppins": "^5.1.0",
-    "astro": "^4.16.16",
+    "@astrojs/vercel": "^8.0.2",
+    "@fontsource/archivo-black": "^5.1.1",
+    "@fontsource/poppins": "^5.1.1",
+    "astro": "^4.16.18",
     "astro-tabs": "^0.1.8",
-    "resend": "^4.0.1",
-    "sharp": "^0.33.5",
-    "solid-js": "^1.9.3",
-    "typescript": "^5.7.2"
+    "resend": "^4.1.1",
+    "solid-js": "^1.9.4",
+    "typescript": "^5.7.3",
+    "vercel^5.0.0": "link:@astrojs/vercel^5.0.0"
   },
   "devDependencies": {
     "prettier": "3.4.1",
-    "sass-embedded": "^1.83.0"
+    "sass-embedded": "^1.83.4"
   }
 }
