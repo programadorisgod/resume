@@ -157,6 +157,11 @@ const props = {
 </section>
 
 <script>
+    const apiUrl =
+        import.meta.env.MODE === 'production'
+            ? import.meta.env.PUBLIC_API_BASE_URL
+            : 'http://localhost:4321'
+
     const form:HTMLFormElement = document.querySelector('.contact-form') as HTMLFormElement
 
     function showToast(message: string, duration = 3000) {
@@ -183,16 +188,13 @@ const props = {
             const data = Object.fromEntries(formData.entries())
 
             try {
-                const response = await fetch(
-                    'http://localhost:4321/api/send-email.json',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data),
-                    }
-                )
+                const response = await fetch(`${apiUrl}/api/send-email.json`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
 
                 if (!response.ok) {
                     throw new Error(
