@@ -13,12 +13,10 @@
     "@astrojs/vercel": "^8.0.2",
     "@fontsource/archivo-black": "^5.1.1",
     "@fontsource/poppins": "^5.1.1",
-    "astro": "^4.16.18",
+    "astro": "^5.1.7",
     "astro-tabs": "^0.1.8",
     "resend": "^4.1.1",
-    "solid-js": "^1.9.4",
-    "typescript": "^5.7.3",
-    "vercel^5.0.0": "link:@astrojs/vercel^5.0.0"
+    "typescript": "^5.7.3"
   },
   "devDependencies": {
     "prettier": "3.4.1",
